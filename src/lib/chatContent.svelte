@@ -1,28 +1,16 @@
-<script>
+<script lang="ts">
 	import BubbleHost from "$lib/bubbleHost.svelte";
     import BubbleAssistant from "$lib/bubbleAssistant.svelte";
+	import type { list } from "postcss";
 
-    let messageFeed = [
-        {
-            id: 0,
-            host: true,
-            avatar: 48,
-            name: 'Jane',
-            timestamp: 'Yesterday @ 2:30pm',
-            message: 'Some message text.',
-            color: 'variant-soft-primary'
-        },
-        {
-            id: 1,
-            host: false,
-            avatar: 14,
-            name: 'Michael',
-            timestamp: 'Yesterday @ 2:45pm',
-            message: 'Some message text.',
-            color: 'variant-soft-primary'
-        }
-	];
-	
+    import {messageFeedStore, type Message} from '../store';
+
+    let messageFeed: Message[] = [];
+
+    messageFeedStore.subscribe((data: Message[]) => {
+        messageFeed = data;
+    });
+
 </script>
 
 
