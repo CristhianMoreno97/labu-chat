@@ -1,5 +1,4 @@
 <script>
-
     import { Avatar } from "@skeletonlabs/skeleton";
 
     export let bubble = {
@@ -11,8 +10,8 @@
         content: 'Some message text.',
         color: 'variant-soft-primary'
     };
-
 </script>
+
 
 
 <div class="grid grid-cols-[auto_1fr] gap-2">

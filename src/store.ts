@@ -10,4 +10,4 @@ export interface Message {
     color: string;
 }
 
-export const chatRoomContent: Writable<Message[]> = writable([]);
+export const chatRoomMessages: Writable<Message[]> = writable([]);

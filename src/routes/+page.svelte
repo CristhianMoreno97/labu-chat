@@ -1,11 +1,10 @@
+
+
+
 <script lang='ts'>
-	import { AppShell, Avatar } from '@skeletonlabs/skeleton';
-	
-	import ProductCard from "$lib/productCard.svelte";
 	import Chat from '$lib/chat.svelte';
 	import ChatContent from '$lib/chatContent.svelte';
 	import ChatInput from '$lib/chatInput.svelte';
-
 </script>
 
 

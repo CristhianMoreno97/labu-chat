@@ -1,15 +1,14 @@
 <script lang="ts">
-
-	import {chatRoomContent, type Message} from '../store';
+	import {chatRoomMessages, type Message} from '../store';
 
 	/**
 	 * Handles the keydown event when a user presses a key.
 	 * If the Enter key is pressed, a new message is added to the chat room content.
-	 * @param event The keyboard event object.
+	 * @param keyboardEvent The keyboard event object.
 	 */
 	function handleKeyDown(keyboardEvent: KeyboardEvent): void {		
 		if (keyboardEvent.key === 'Enter') {
-			const inputElement = keyboardEvent.target as HTMLInputElement; // get object name: console.log(event.target?.constructor.name);
+			const inputElement = keyboardEvent.target as HTMLInputElement; // util/ get object name: console.log(event.target?.constructor.name);
 			const messageContent = inputElement?.value.trim(); 
 			inputElement.value = '';
 
@@ -25,10 +24,12 @@
 				color: 'variant-soft-primary',
 			};	
 			
-			chatRoomContent.update((messages) => [...messages, newMessage]);
+			chatRoomMessages.update((messages) => [...messages, newMessage]);
 		}
 	}
 </script>
+
+
 
 <label class="label">
 	<span>Prompt</span>
