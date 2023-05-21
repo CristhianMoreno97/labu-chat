@@ -9,7 +9,7 @@
         avatar: number,
         name: string,
         timestamp: string,
-        message: string,
+        content: string,
         color: string,
     };
 
@@ -19,7 +19,7 @@
         avatar: 48,
         name: 'Jane',
         timestamp: 'Yesterday @ 2:30pm',
-        message: 'Some message text.',
+        content: 'Some message text.',
         color: 'variant-soft-primary'
     }; 
 
@@ -33,7 +33,7 @@
 			<p class="font-bold">{bubble.name}</p>
 			<small class="opacity-50">{bubble.timestamp}</small>
 		</header>
-		<p>{bubble.message}</p>
+		<p>{bubble.content}</p>
 	</div>
 
 	<Avatar src="https://i.pravatar.cc/?img={bubble.avatar}" width="w-12" />

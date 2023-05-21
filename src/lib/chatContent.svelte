@@ -3,12 +3,11 @@
 	import BubbleHost from "$lib/bubbleHost.svelte";
     import BubbleAssistant from "$lib/bubbleAssistant.svelte";
 	import type { list } from "postcss";
-
-    import {messageFeedStore, type Message} from '../store';
+    import {chatRoomContent, type Message} from '../store';
 
     let messageFeed: Message[] = [];
 
-    messageFeedStore.subscribe((data: Message[]) => {
+    chatRoomContent.subscribe((data: Message[]) => {
         messageFeed = data;
     });
 

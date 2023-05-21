@@ -6,8 +6,8 @@ export interface Message {
     avatar: number;
     name: string;
     timestamp: string;
-    message: string;
+    content: string;
     color: string;
 }
 
-export const messageFeedStore: Writable<Message[]> = writable([]);
+export const chatRoomContent: Writable<Message[]> = writable([]);
