@@ -14,7 +14,7 @@
 </script>
 
 
-<section class="w-full max-h-[400px] p-4 overflow-y-auto space-y-4">
+<section class="w-full max-h-[800px] p-4 overflow-y-auto space-y-4">
 	{#each messageFeed as bubble, i}
 		{#if bubble.host === true}
 			<!-- Host Message Bubble -->
@@ -26,4 +26,5 @@
             <BubbleHost bubble={bubble} />
 		{/if}
 	{/each}
+	
 </section>

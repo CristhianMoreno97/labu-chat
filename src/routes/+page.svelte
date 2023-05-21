@@ -10,7 +10,7 @@
 
 
 
-<main>
+<main class="h-full">
 	<Chat>
 		<ChatContent slot="chat-content"></ChatContent>
 		<ChatInput slot="chat-input"></ChatInput>
