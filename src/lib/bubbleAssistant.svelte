@@ -1,9 +1,19 @@
 
-<script>
+<script lang="ts">
 
     import { Avatar } from "@skeletonlabs/skeleton";
 
-    export let bubble = {
+    type ChatBubble = {
+        id: number,
+        host: boolean,
+        avatar: number,
+        name: string,
+        timestamp: string,
+        message: string,
+        color: string,
+    };
+
+    export let bubble: ChatBubble = {
         id: 0,
         host: true,
         avatar: 48,
@@ -11,7 +21,7 @@
         timestamp: 'Yesterday @ 2:30pm',
         message: 'Some message text.',
         color: 'variant-soft-primary'
-    };
+    }; 
 
 </script>
 
