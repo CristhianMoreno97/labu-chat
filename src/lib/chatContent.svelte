@@ -1,38 +1,63 @@
+
+
+
 <script lang="ts">
     import { chatRoomMessages, type Message } from '../store';
 	import { afterUpdate } from 'svelte';
 	import BubbleHost from "$lib/bubbleHost.svelte";
     import BubbleAssistant from "$lib/bubbleAssistant.svelte";
 
-    let messages: Message[] = [];
-	let bubbleElement: HTMLElement;
+	let messages: Message[] = [];
+	let messageBoxNode: HTMLElement | null = null;
 
-	// Subscribe to changes in the chat room messages
-    chatRoomMessages.subscribe((data: Message[]) => {
-        messages = data;
-    });
 
-	// Execute after the component updates
-	afterUpdate(() => {
-		if (messages) scrollToBottom(bubbleElement);
-	})
-	
-	// Watch for changes in the messages array and the bubbleElement reference
-	$: {
-		if (messages && bubbleElement) {
-			scrollToBottom(bubbleElement);
+	/**
+	 * Suscribe a los cambios en los mensajes de la sala de chat.
+	 */
+	function subscribeToChatRoomMessages() {
+		chatRoomMessages.subscribe((newMessages: Message[]) => {
+			updateMessageList(newMessages);
+		});
+	}
+
+	/**
+	 * Actualiza la lista de mensajes y realiza el desplazamiento hacia abajo.
+	 * @param newMessages - Nuevos mensajes de la sala de chat.
+	 */
+	function updateMessageList(newMessages: Message[]) {
+		messages = newMessages;
+		scrollToBottom();
+	}
+
+	/**
+	 * Realiza el desplazamiento hacia abajo en el contenedor de mensajes.
+	 */
+	function scrollToBottom(){
+		if (messages && messageBoxNode) {
+			messageBoxNode.scroll({ top: messageBoxNode.scrollHeight, behavior: 'smooth' });
 		}
 	}
 
-	// Scroll the message bubbles container to the bottom
-	async function scrollToBottom(node: HTMLElement) {
-		node.scroll({ top: node.scrollHeight, behavior: 'smooth' });
+	/**
+	 * Método de devolución de llamada ejecutado después de que el componente se actualiza.
+	 * Realiza el desplazamiento hacia abajo en el contenedor de mensajes.
+	 */
+	function afterUpdateCallback() {
+		scrollToBottom();
 	}
+	
+	subscribeToChatRoomMessages()
+	
+	afterUpdate(() => {
+		if (messages) {
+			afterUpdateCallback();
+		}
+	})
 </script>
 
 
 
-<section id="message-bubbles" bind:this={bubbleElement} class="w-full max-h-[800px] p-4 overflow-y-auto space-y-4">
+<section id="message-box" bind:this={messageBoxNode} class="w-full max-h-[800px] p-4 overflow-y-auto space-y-4">
 	{#each messages as bubble, i}
 		{#if bubble.host === true}
 			<BubbleAssistant bubble={bubble} />
