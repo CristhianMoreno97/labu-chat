@@ -14,10 +14,10 @@
 			id: 0,
 			host: true,
 			avatar: 48,
-			name: 'Jane',
+			name: 'Usuario UPTC',
 			timestamp: 'Yesterday @ 2:30pm',
 			content: userMessageContent,
-			color: 'variant-soft-primary',
+			color: 'variant-filled-tertiary',
 		};
 		chatRoomMessages.update((messages) => [...messages, newUserMessage]);
 	}
@@ -34,10 +34,10 @@
 				id: 1,
 				host: false,
 				avatar: 14,
-				name: 'Michael',
+				name: 'Ramiro Chat',
 				timestamp: 'Yesterday @ 2:45pm',
 				content: wizardMessageContent,
-				color: 'variant-soft-primary',
+				color: 'variant-filled-primary',
 			};
 			console.log(response);
 			chatRoomMessages.update((messages) => [...messages, newWizardMessage]);
@@ -69,12 +69,12 @@
 
 
 <label class="label">
-	<span>Prompt</span>
+	<span></span>
 	<input 
 		id="prompt-input"
-		class="input"
+		class="input variant-form-material"
 		type="text"
-		placeholder="Input"
+		placeholder="Escriba un mensaje..."
 		on:keydown={handleKeyDown}
 	/>
 </label>
