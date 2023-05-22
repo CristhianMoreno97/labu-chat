@@ -1,4 +1,5 @@
 import type {PostChatbotRequest} from '$lib/types/postChatbotRequest';
+import { PUBLIC_CHATBOT_API_URL_BASE, PUBLIC_CHATBOT_CHAT_ENDPOINT } from '$env/static/public';
 
 /**
  * Sends a POST request to the specified URL with a message payload.
@@ -8,7 +9,8 @@ import type {PostChatbotRequest} from '$lib/types/postChatbotRequest';
  */
 export async function postChatbotRequest(message: string): Promise<PostChatbotRequest> {
     try {
-        const response = await fetch('http://127.0.0.1:8000/chat', {
+        const urlChatbot = new URL(PUBLIC_CHATBOT_CHAT_ENDPOINT, PUBLIC_CHATBOT_API_URL_BASE);
+        const response = await fetch(urlChatbot, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ message })
