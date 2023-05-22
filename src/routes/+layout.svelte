@@ -1,3 +1,6 @@
+
+
+
 <script lang='ts'>
 	// The ordering of these imports is critical to your app working properly
 	import '@skeletonlabs/skeleton/themes/theme-rocket.css';
@@ -5,8 +8,8 @@
 	import '@skeletonlabs/skeleton/styles/skeleton.css';
 	// Most of your app wide CSS should be put in this file
 	import '../app.postcss';
-
 </script>
 
+
+
 <slot></slot>
-					

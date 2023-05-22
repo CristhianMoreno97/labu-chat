@@ -1,30 +1,51 @@
+
+
+
 <script lang="ts">
 	import {chatRoomMessages, type Message} from '../store';
+	import {postChatbotRequest} from '$lib/api/chatbot';
 
 	/**
 	 * Handles the keydown event when a user presses a key.
 	 * If the Enter key is pressed, a new message is added to the chat room content.
 	 * @param keyboardEvent The keyboard event object.
 	 */
-	function handleKeyDown(keyboardEvent: KeyboardEvent): void {		
+	async function handleKeyDown(keyboardEvent: KeyboardEvent): Promise<void> {		
 		if (keyboardEvent.key === 'Enter') {
-			const inputElement = keyboardEvent.target as HTMLInputElement; // util/ get object name: console.log(event.target?.constructor.name);
-			const messageContent = inputElement?.value.trim(); 
+			const inputElement = keyboardEvent.target as HTMLInputElement; // util: get object name: console.log(event.target?.constructor.name);
+			const userMessageContent = inputElement?.value.trim(); 
 			inputElement.value = '';
 
-			if (messageContent === '') return; // do nothing if message is empty
+			if (userMessageContent === '') return;
 
-			const newMessage: Message = {
+			const newUserMessage: Message = {
 				id: 0,
 				host: true,
 				avatar: 48,
 				name: 'Jane',
 				timestamp: 'Yesterday @ 2:30pm',
-				content: messageContent,
+				content: userMessageContent,
 				color: 'variant-soft-primary',
-			};	
-			
-			chatRoomMessages.update((messages) => [...messages, newMessage]);
+			};
+			chatRoomMessages.update((messages) => [...messages, newUserMessage]);
+
+			try {
+				const response = await postChatbotRequest(userMessageContent);
+				const wizardMessageContent = response.message;
+				const newWizardMessage: Message = {
+					id: 1,
+					host: false,
+					avatar: 14,
+					name: 'Michael',
+					timestamp: 'Yesterday @ 2:45pm',
+					content: wizardMessageContent,
+					color: 'variant-soft-primary',
+				};
+				console.log(response);
+				chatRoomMessages.update((messages) => [...messages, newWizardMessage]);
+			} catch (error) {
+				console.log('Error:', error);
+			}
 		}
 	}
 </script>
