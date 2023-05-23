@@ -69,6 +69,28 @@
 			await handleChatbotResponse(userMessageContent);
 		}
 	}
+
+	
+	/**
+	 * Agrega un mensaje de bienvenida al chat.
+	 */
+	 function putWelcomeMessage() {
+		const timestamp = getCurrentTimestamp();
+		const welcomeMessageContent = 'Hola, soy Ramiro Chat, ¿en qué puedo ayudarte?';
+		const newWelcomeMessage: Message = {
+			id: 1,
+			host: false,
+			avatar: 14,
+			name: 'Ramiro Chat',
+			timestamp: timestamp,
+			content: welcomeMessageContent,
+			color: 'variant-filled-primary',
+			src: "https://cdn-icons-png.flaticon.com/512/4712/4712010.png",
+		};
+		const { update } = chatRoomMessages;
+		update((messages) => [...messages, newWelcomeMessage]);
+	}
+	putWelcomeMessage();
 </script>
 
 
