@@ -2,7 +2,8 @@
 
 
 <script lang="ts">
-	import { chatRoomMessages, type Message } from '../store';
+	import type { Message } from "$lib/types/message"
+	import { chatRoomMessages } from '../store';
 	import { postChatbotRequest } from '$lib/api/chatbot';
 
 	/**
@@ -18,6 +19,7 @@
 			timestamp: 'Yesterday @ 2:30pm',
 			content: userMessageContent,
 			color: 'variant-filled-tertiary',
+			src: "https://cdn-icons-png.flaticon.com/512/3652/3652506.png"
 		};
 		chatRoomMessages.update((messages) => [...messages, newUserMessage]);
 	}
@@ -38,6 +40,7 @@
 				timestamp: 'Yesterday @ 2:45pm',
 				content: wizardMessageContent,
 				color: 'variant-filled-primary',
+				src: "https://cdn-icons-png.flaticon.com/512/4712/4712010.png",
 			};
 			console.log(response);
 			chatRoomMessages.update((messages) => [...messages, newWizardMessage]);
