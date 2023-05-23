@@ -76,7 +76,7 @@
 	 */
 	 function putWelcomeMessage() {
 		const timestamp = getCurrentTimestamp();
-		const welcomeMessageContent = '¡Hola! ¡Bienvenido al chatbot de servicios de laboratorios universitarios! Soy un asistente virtual diseñado para ayudarte en cualquier consulta que tengas sobre los servicios que ofrecemos en nuestros laboratorios. ¿En qué puedo ayudarte hoy?';
+		const welcomeMessageContent = '¡Hola! Soy un asistente virtual diseñado para ayudarte en cualquier consulta que tengas sobre los servicios que ofrecemos en nuestros laboratorios. ¿En qué puedo ayudarte hoy?';
 		const newWelcomeMessage: Message = {
 			id: 1,
 			host: false,
