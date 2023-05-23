@@ -78,3 +78,11 @@
 		on:keydown={handleKeyDown}
 	/>
 </label>
+
+
+
+<style>
+	input {
+		color: black;
+	}
+</style>
