@@ -65,3 +65,13 @@ function formatTime(hours: number, minutes: number): string {
     const formattedMinutes = minutes.toString().padStart(2, '0');
     return `${formattedHours}:${formattedMinutes}`;
 }
+
+/**
+ * Obtiene la marca de tiempo actual en formato dd/mm/yyyy @ hh:mm AM/PM.
+ * @returns La marca de tiempo actual en formato dd/mm/yyyy @ hh:mm AM/PM.
+ */
+export function getCurrentTimestamp(): string {
+    const date = getCurrentDay();
+    const time = getCurrentTime12();
+    return `${date} @ ${time}`;
+}

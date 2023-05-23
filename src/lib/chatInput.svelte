@@ -5,14 +5,14 @@
 	import type { Message } from "$lib/types/message"
 	import { chatRoomMessages } from '../store';
 	import { postChatbotRequest } from '$lib/api/chatbot';
-	import { getCurrentDay, getCurrentTime12 } from "$lib/utils/utils";
+	import { getCurrentTimestamp } from "$lib/utils/utils";
 
 	/**
 	 * Envía un nuevo mensaje del usuario al chat.
 	 * @param userMessageContent El contenido del mensaje del usuario.
 	 */
 	function sendUserMessage(userMessageContent: string): void {
-		const timestamp = `${getCurrentDay()} @ ${getCurrentTime12()}`;
+		const timestamp = getCurrentTimestamp();
 		const newUserMessage: Message = {
 			id: 0,
 			host: true,
@@ -33,7 +33,7 @@
 	async function handleChatbotResponse(userMessageContent: string): Promise<void> {
 		try {
 			const response = await postChatbotRequest(userMessageContent);
-			const timestamp = `${getCurrentDay()} @ ${getCurrentTime12()}`;
+			const timestamp = getCurrentTimestamp();
 			const wizardMessageContent = response.message;
 			const newWizardMessage: Message = {
 				id: 1,
@@ -45,7 +45,6 @@
 				color: 'variant-filled-primary',
 				src: "https://cdn-icons-png.flaticon.com/512/4712/4712010.png",
 			};
-			console.log(response);
 			chatRoomMessages.update((messages) => [...messages, newWizardMessage]);
 		} catch (error) {
 			console.log('Error:', error);
