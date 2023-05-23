@@ -5,18 +5,20 @@
 	import type { Message } from "$lib/types/message"
 	import { chatRoomMessages } from '../store';
 	import { postChatbotRequest } from '$lib/api/chatbot';
+	import { getCurrentDay, getCurrentTime12 } from "$lib/utils/utils";
 
 	/**
 	 * Envía un nuevo mensaje del usuario al chat.
 	 * @param userMessageContent El contenido del mensaje del usuario.
 	 */
 	function sendUserMessage(userMessageContent: string): void {
+		const timestamp = `${getCurrentDay()} @ ${getCurrentTime12()}`;
 		const newUserMessage: Message = {
 			id: 0,
 			host: true,
 			avatar: 48,
 			name: 'Usuario UPTC',
-			timestamp: 'Yesterday @ 2:30pm',
+			timestamp: timestamp,
 			content: userMessageContent,
 			color: 'variant-filled-tertiary',
 			src: "https://cdn-icons-png.flaticon.com/512/3652/3652506.png"
@@ -31,13 +33,14 @@
 	async function handleChatbotResponse(userMessageContent: string): Promise<void> {
 		try {
 			const response = await postChatbotRequest(userMessageContent);
+			const timestamp = `${getCurrentDay()} @ ${getCurrentTime12()}`;
 			const wizardMessageContent = response.message;
 			const newWizardMessage: Message = {
 				id: 1,
 				host: false,
 				avatar: 14,
 				name: 'Ramiro Chat',
-				timestamp: 'Yesterday @ 2:45pm',
+				timestamp: timestamp,
 				content: wizardMessageContent,
 				color: 'variant-filled-primary',
 				src: "https://cdn-icons-png.flaticon.com/512/4712/4712010.png",
