@@ -2,7 +2,7 @@
 
 
 <div id="columns" class="w-full grid grid-cols-[auto_1fr] gap-1 h-full">
-	<div id="left-rows" class="bg-primary-50/20 p-4">
+	<div id="left-rows" class="bg-primary-50/20 p-4 hidden md:block">
 		<div class="h-full grid grid-rows-[auto_1fr_auto] gap-1">
 			<div id="empty-section-1" class="bg-section p-4"></div>
 			<div id="chat-info" class="bg-section p-4">
